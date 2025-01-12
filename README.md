@@ -28,8 +28,3 @@ curl --socks5 http://192.168.0.140:9050 -L https://2ip.ru
 ```
 **Proxy server in Firefox:**<br>
 ![picture](https://lumpics.ru/wp-content/uploads/2016/08/Tor-dlya-Firefox-3.png)
-
-## [Toerrserver](https://github.com/YouROK/TorrServer)
-![](https://cs9f3b.4pda.ws/24750223.png)
-
-For Android [download](https://f-droid.org/packages/ru.yourok.torrserve)
