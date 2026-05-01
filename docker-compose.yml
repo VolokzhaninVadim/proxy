@@ -46,11 +46,18 @@ services:
     container_name: tor-bridges-proxy
     ports:
       - "9050:9150"
-    #   - "9151:9151"
+      - "9151:9151"
     #   - "53:9053"
     restart: unless-stopped
     networks:
       - default
+
+  privoxy:
+    image: alpine:latest
+    container_name: privoxy
+    network_mode: host
+    command: sh -c "apk add --no-cache privoxy && echo 'forward-socks5t / 127.0.0.1:9050 .' >> /etc/privoxy/config && echo 'listen-address 0.0.0.0:8118' >> /etc/privoxy/config && echo 'max-client-connections 1024' >> /etc/privoxy/config && privoxy --no-daemon /etc/privoxy/config"
+    restart: unless-stopped
 
 networks:
   default:
