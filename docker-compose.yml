@@ -38,11 +38,17 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
 
-  tor-bridges-proxy:
-    image: zerolabnet/tor-bridges-proxy:latest
-    container_name: tor-bridges-proxy
-    ports:
-      - "9050:9150"
-      - "9151:9151"
-    #   - "53:9053"
+  tor-custom:
+    build: .
+    container_name: tor-custom
     restart: unless-stopped
+    ports:
+      - "9050:9050"
+      - "9053:9053/udp"
+      - "9053:9053/tcp"
+    volumes:
+      - ./torrc:/etc/tor/torrc:ro
+      - tor_data:/var/lib/tor
+
+volumes:
+  tor_data:
